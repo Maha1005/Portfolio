@@ -1,0 +1,262 @@
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #f0f4f9, #e6f7ff);
+  margin: 0;
+  padding: 0;
+  color: #222;
+  scroll-behavior: smooth;
+}
+
+
+section {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+section:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+}
+
+.nav-div{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.nav-bar {
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  column-gap: 10px;
+}
+
+Link{
+  text-decoration: none;
+}
+
+.logo {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #61dafb;
+  letter-spacing: 1px;
+}
+
+
+.nav-links {
+  display: flex;
+  gap: 1.5rem; 
+}
+
+.navbar a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.nav-bar a:hover,
+.nav-bar a.active {
+  background: linear-gradient(90deg, #61dafb, #21a1f1);
+  color: #fff;
+  box-shadow: 0 3px 10px rgba(97,218,251,0.3);
+}
+
+.home, .about, .projects, .skills, .contact {
+  max-width: 900px;
+  margin: 2rem auto;
+  background: #fff;
+  padding: 2.5rem;
+  border-radius: 15px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+  transition: all 0.3s ease;
+}
+
+.home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  min-height: 70vh;
+  justify-content: center;
+  background: linear-gradient(145deg, #ffffff, #f8fcff);
+}
+
+.profile-img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin-top: 1.5rem;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+  object-fit: cover;
+  border: 5px solid #61dafb;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.profile-img:hover {
+  transform: scale(1.08);
+  border-color: #21a1f1;
+}
+
+h1 {
+  font-size: 2.8rem;
+  margin-bottom: 0.7rem;
+  color: #111;
+  /* background: linear-gradient(90deg, #21a1f1, #61dafb); */
+  
+}
+
+.home p {
+  font-size: 1.2rem;
+  color: #555;
+  margin-bottom: 2rem;
+}
+
+button, .btn {
+  background: linear-gradient(90deg, #61dafb, #21a1f1);
+  color: white;
+  font-weight: 600;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+button:hover, .btn:hover {
+  background: linear-gradient(90deg, #21a1f1, #61dafb);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  transform: scale(1.05);
+}
+
+.projects {
+  background: #f9fafc;
+  border-radius: 15px;
+  padding: 2.5rem 2rem;
+  margin-top: 2rem;
+}
+
+.projects h2 {
+  color: #111;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+.projects ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.projects li {
+  background: #fff;
+  border-left: 6px solid #61dafb;
+  margin-bottom: 1.5rem;
+  padding: 1.2rem 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.projects li:hover {
+  transform: translateX(6px);
+  border-left-color: #21a1f1;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+}
+
+.projects strong {
+  color: #21a1f1;
+  font-size: 1.15rem;
+  display: block;
+  margin-bottom: 0.4rem;
+  letter-spacing: 0.5px;
+}
+
+@media (max-width: 768px) {
+  .nav-div{
+    display:flex;
+  flex-direction: column;  }
+  .nav-bar {
+    align-items: flex-start;
+    padding: 1rem;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    gap: 0.8rem;
+    width: 100%;
+  }
+
+  .nav-bar a {
+    font-size: 0.95rem;
+    padding: 0.6rem 1rem;
+    width: 100%;
+    display: block;
+  }
+
+  .home, .about, .projects, .skills, .contact {
+    margin: 1.2rem;
+    padding: 1.5rem;
+  }
+
+  .home h1 {
+    font-size: 2rem;
+  }
+
+  .profile-img {
+    width: 110px;
+    height: 110px;
+  }
+
+  .projects h2 {
+    font-size: 1.6rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-bar {
+    gap: 0.6rem;
+    text-align: center;
+  }
+
+  .nav-links {
+    align-items: center;
+  }
+
+  .nav-bar a {
+    font-size: 0.85rem;
+    padding: 0.5rem 0.8rem;
+    max-width: 240px;
+  }
+
+  .home h1 {
+    font-size: 1.6rem;
+  }
+
+  .home p {
+    font-size: 0.9rem;
+  }
+
+  .profile-img {
+    width: 85px;
+    height: 85px;
+  }
+
+  .projects h2 {
+    font-size: 1.3rem;
+  }
+
+  .projects li {
+    padding: 1rem;
+    font-size: 0.9rem;
+  }
+}
