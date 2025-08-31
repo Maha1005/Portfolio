@@ -1,31 +1,34 @@
-
 import './App.css'
-import { Route, Routes,Link } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
+import {useState} from 'react'
 import About from './Components/About'
-import Home from './Components/Home'
 import Projects from './Components/Projects'
 import Skills from './Components/Skills'
 import Contact from './Components/Contact'
-function App() {
+import Login from './Components/Login'
+import Layout from './Components/Layout'
+import Dashboard from './Components/Dashboard'
+import Portfolio from './Components/Portfolio'
+import Register from './Components/Register'
 
+function App() {
   return (
     <>
-    <div className='nav-div'>
-      <h1>MAHAVARSHNI S</h1>
-    <nav className='nav-bar'>
-      <Link to="/">Home</Link>
-      <Link to="/About">About</Link>
-       <Link to="/Projects">Projects</Link>
-        <Link to="/Skills">Skills</Link>
-         <Link to="/contact">Contact</Link>
-    </nav>
-    </div>
       <Routes>
-        <Route path="/" element={<Home/>}></Route>
-        <Route path="/About" element={<About/>}></Route>
-        <Route path="/Projects" element={<Projects />}></Route>
-        <Route path="/Skills" element={<Skills/>}></Route>
-        <Route path="/Contact" element={<Contact/>}></Route>
+        {/* Public routes without navbar */}
+        <Route path="/" element={<Login/>}></Route>
+        <Route path="/login" element={<Login />}></Route>
+        <Route path="/register" element={<Register/>}></Route>
+        
+        {/* Dashboard route - standalone without navbar */}
+        <Route path="/dashboard" element={<Dashboard/>}></Route>
+        
+        {/* Portfolio routes with navbar */}
+        <Route path="/portfolio" element={<Layout><Portfolio/></Layout>}></Route>
+        <Route path="/About" element={<Layout><About/></Layout>}></Route>
+        <Route path="/Projects" element={<Layout><Projects /></Layout>}></Route>
+        <Route path="/Skills" element={<Layout><Skills/></Layout>}></Route>
+        <Route path="/Contact" element={<Layout><Contact /></Layout>}></Route>
       </Routes>
     </>
   )

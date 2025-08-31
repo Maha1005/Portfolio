@@ -1,16 +1,26 @@
+import { useEffect, useState } from "react";
+
 function Skills() {
+  const [data, setData] = useState([]);
+
+  const getData = () => {
+    fetch("http://localhost:3000/users").then((res) => res.json()).then((data) => setData(data));
+  }
+
+  useEffect(() => {
+    getData();
+  },[])
   return (
     <div className="skills">
-      <h2>Skills</h2>
+      <h1 className="skill-heading">Skills</h1>
       <ul>
-        <li>React</li>
-        <li>JavaScript</li>
-        <li>HTML & CSS</li>
-        <li>Node.js</li>
-        <li>Tailwind - CSS</li>
-        <li>Git & GitHub</li>
-        <li>Java</li>
-        <li>SQL</li>
+        {data.map((datum, index) => (
+          datum.Skills?.map((Content, index) => (
+            <li key={index} className="skill-list">
+               {Content}
+           </li>
+          ))
+        ))}
       </ul>
     </div>
   );
