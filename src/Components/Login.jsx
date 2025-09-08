@@ -5,8 +5,9 @@ import axios from "axios";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [selected, setSelected] = useState(false);
   const navigate = useNavigate();
-
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -20,21 +21,36 @@ const Login = () => {
       alert("Please enter a valid email address");
       return;
     }
-    
-    try {
-      const res = await axios.post("http://localhost:3000/login", {
-        email,
-        password,
-      });
+    if (!selected) {
+      try {
+        const res = await axios.post("http://localhost:3000/login", {
+          email,
+          password,
+        });
 
-      localStorage.setItem("token", res.data.token);
-      navigate("/dashboard");
-    } catch (err) {
-      console.log("error while Log in: " + err);
-      alert("User doesn't exist! Please Enter Valid User credentials");
+        localStorage.setItem("token", res.data.token);
+         localStorage.setItem("role",res.data.role)
+        navigate("/dashboard");
+      } catch (err) {
+        console.log("error while Log in: " + err);
+        alert("User doesn't exist! Please Enter Valid User credentials");
+      }
+    } else {
+      try {
+        const res = await axios.post("http://localhost:3000/login/admin", {
+          email,
+          password
+        })
+        localStorage.setItem("token", res.data.token);
+        localStorage.setItem("role",res.data.role)
+        navigate("/dashboard");
+      } catch (err) {
+        console.log("error while Log in: " + err);
+        alert("You are not an admin!")
+      }
     }
-  };
-
+    
+  }
   return (
     <div className="body">
       <div className="outer-body">
@@ -60,6 +76,16 @@ const Login = () => {
             className="input-box"
             required
           />
+         <div className="role-select">
+            <label>
+              <input
+                type="checkbox"
+                checked={selected}
+                onChange={(e) => setSelected(e.target.checked)}
+              />
+              Admin
+            </label>
+          </div>
           <button type="submit" className="login">
             Login
           </button>

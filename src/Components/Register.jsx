@@ -6,6 +6,7 @@ const Register = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [selected, setSelected] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -21,20 +22,35 @@ const Register = () => {
       alert("Please enter a valid email address");
       return;
     }
-    
-    try {
-      await axios.post("http://localhost:3000/register", {
-        username,
-        email,
-        password,
-      });
-      alert("Successfully Registered, Please Login!!");
-      navigate("/");
-    } catch (err) {
-      console.log("error while Sign up: " + err);
-      alert("Please Enter Valid Credentials, May be the User already exists");
+    if (!selected) {
+      try {
+        await axios.post("http://localhost:3000/register", {
+          username,
+          email,
+          password,
+        });
+        alert("Successfully Registered, Please Login!!");
+        navigate("/");
+      } catch (err) {
+        console.log("error while Sign up: " + err);
+        alert("Please Enter Valid Credentials, May be the User already exists");
+      }
+    } else {
+       try {
+        await axios.post("http://localhost:3000/register/admin", {
+          username,
+          email,
+          password,
+        });
+        alert("Successfully Registered, Please Login!!");
+        navigate("/");
+      } catch (err) {
+        console.log("error while Sign up: " + err);
+        alert("Please Enter Valid Credentials, May be the User already exists");
+      }
+      
     }
-  };
+  }
 
   return (
     <div className="body">
@@ -71,6 +87,16 @@ const Register = () => {
             className="input-box"
             required
           />
+          <div className="role-select">
+            <label>
+              <input
+                type="checkbox"
+                checked={selected}
+                onChange={(e) => setSelected(e.target.checked)}
+              />
+              Admin
+            </label>
+          </div>
           <button type="submit" className="sign-in">
             Sign Up
           </button>
